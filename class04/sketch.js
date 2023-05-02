@@ -1,14 +1,28 @@
-let ballV 
-balls.push()
+let balls = []
+
 
 function setup() {
-  ballV = new BallWithVelocity(250, 250, 5, 5, 45)
-  createCanvas(500, 500)
+
+  for(let i = 0; i < 4; i++) {
+    balls.push(new BallWithVelocity(random(50, 400), random(50, 400), 10, 100, random(0, 360)))
+  }
+  
+  createCanvas(1000, 1000)
   angleMode(DEGREES)
 }
 
 function draw() {
+
   background(0)
-  ballV.drawBall()
-  ballV.moveBall()
+
+  balls.forEach((ball, index) => {
+    ball.drawBall()
+  })
+
+  for(let i = 0; i < balls.length; i++) {
+    for(let j = i + 1; j < balls.length; j++) {
+      balls[i].intersects(balls[j])
+    }
+  }
+
 }
