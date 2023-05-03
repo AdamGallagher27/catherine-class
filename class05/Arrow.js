@@ -5,7 +5,7 @@ class Arrow {
 		this.x = x;
 		this.y = y;
 
-
+		this.speed = createVector(random(-1, 1), random(-1, 1))
 
 		// vx / vy
 		this.vx = cos(rotation) * speed
@@ -18,6 +18,7 @@ class Arrow {
 	drawArrow() {
 		push()
 		translate(this.x, this.y)
+		rotate(this.rotation)
 		noStroke()
 		beginShape()
 		vertex(-50, -25)
@@ -36,13 +37,13 @@ class Arrow {
 
 	//rotate arrow in direction of movement
 	rotateToMovement() {
-		return tan(this.angle)
+		return this.rotation = atan2(this.speed.y, this.speed.x)
 	}
 
 	//move arrow - same as for Ball class
 	moveArrow(){
-		this.x += this.vx
-		this.y += this.vx
+		this.x += this.speed.x
+		this.y += this.speed.y
 	}
 
 }
